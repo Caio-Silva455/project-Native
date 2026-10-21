@@ -60,7 +60,7 @@ export default function Enter() {
         )}
       </View>
 
-      <View>
+      <View style={style.proxPagin}>
         <Link href="/prox">
           <Button label="Proxima tela"></Button>
         </Link>
@@ -109,4 +109,9 @@ const style = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
   },
+  proxPagin: {
+    flex: 1, 
+    padding: 32, 
+    gap: 10, 
+  }
 });

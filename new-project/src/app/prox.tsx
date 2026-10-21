@@ -2,7 +2,7 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Link } from "expo-router";
 import { memo, useCallback, useMemo, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View, ScrollView } from "react-native";
 
 type Produto = {
   id: number;
@@ -38,13 +38,13 @@ const PLANILHA: Produto[] = [
     desc: "Iphone 17",
   },
   {
-    id:4,
-    numberProd: 35, 
-    nameProd: "Computer", 
+    id: 4,
+    numberProd: 35,
+    nameProd: "Computer",
     dateProd: "2026/10/05",
-    desc: "Linux Debian 12", 
-    localDestino: "Espirito Santo - Vila Velha"
-  }
+    desc: "Linux Debian 12",
+    localDestino: "Espirito Santo - Vila Velha",
+  },
 ];
 
 PLANILHA.forEach((List) => {
@@ -142,18 +142,24 @@ export default function Prox() {
   );
 
   return (
-    <FlatList
-      data={listaFiltrada}
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
-      ListHeaderComponent={cabecalho}
-      ListEmptyComponent={
-        <Text style={style.vazio}>Nenhum produto encontrado.</Text>
-      }
-      contentContainerStyle={style.container}
-      keyboardShouldPersistTaps="handled"
-      keyboardDismissMode="on-drag"
-    />
+    <ScrollView>
+      <FlatList
+        data={listaFiltrada}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        ListHeaderComponent={cabecalho}
+        ListEmptyComponent={
+          <Text style={style.vazio}>Nenhum produto encontrado.</Text>
+        }
+        contentContainerStyle={style.container}
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="on-drag"
+      />
+
+      <Link href="/end">
+        <Button label="Pagina final">Ir para a pagina final</Button>
+      </Link>
+    </ScrollView>
   );
 }
 
@@ -224,4 +230,9 @@ const style = StyleSheet.create({
     color: COLORS.alerta,
     fontWeight: "500",
   },
+  button:{
+    width: "90%",
+    padding: 20,
+    gap: 10,
+  }
 });
